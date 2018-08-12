@@ -1,0 +1,85 @@
+#include <unistd.h>
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putstr(char *str)
+{
+
+	while(*str)
+	{
+		ft_putchar(*str);
+		str++;
+	}	
+}
+
+
+void	ft_putnbr(int num)
+{
+	if (num < 0)
+	{
+		ft_putchar('-');
+		num *= -1;
+	}
+	if (num >= 10)
+	{
+		ft_putnbr(num / 10);
+		ft_putnbr(num % 10);
+	}
+	else
+		ft_putchar(num + '0');
+}
+
+int		ft_atoi(char *str)
+{
+	int sign;
+	int number;
+	
+	sign = 1;
+	number = 0;
+	while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\v'
+			|| *str == '\f' || *str == '\r')
+		str++;
+	if (*str == '-')
+	{
+		sign = -1;
+		str++;
+	}
+	while (*str && *str >= '0' && *str <= '9')
+	{
+	   number *= 10;
+	   number += *str - '0';
+	   str++;
+	}
+	return (number * sign);
+}
+
+void		tab_mult(char **argv)
+{
+	int i;
+	int number;
+
+	i = 1;
+	number = ft_atoi(argv[1]);
+	while (i < 10)
+	{
+		ft_putnbr(i);
+		ft_putstr(" x  ");
+		ft_putnbr(number);
+		ft_putstr(" = ");
+		ft_putnbr(number * i);
+		ft_putstr("\n");
+		i++;
+	}
+}
+
+int		main(int argc, char **argv)
+{
+	if (argc == 2 && ft_atoi(argv[1]) >= 0 && ft_atoi(argv[1]) <= 238609294)
+		tab_mult(argv);
+	else
+		ft_putchar('\n');
+	return (0);
+}
