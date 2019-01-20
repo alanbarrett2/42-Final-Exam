@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albarret <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/20 13:31:34 by albarret          #+#    #+#             */
-/*   Updated: 2019/01/20 13:34:26 by albarret         ###   ########.fr       */
+/*   Created: 2019/01/20 13:47:19 by albarret          #+#    #+#             */
+/*   Updated: 2019/01/20 14:02:54 by albarret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdio.h>
 
-void	ft_putchar(char c)
+void	ft_swap(int *a, int *b)
 {
-	write(1, &c, 1);
-}
+	int t;
 
-void	ft_putstr(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
+	t = *a;
+	*a = *b;
+	*b = t;
+	printf("%d", *a);
+	printf("%d", *b);
 }
 
 int		main(void)
 {
-	ft_putstr("thisismystring");
-	return(0);
+	int a;
+	int b;
+
+	a = 1;
+	b = 2;
+
+	ft_swap(&a, &b);
+	return (0);
 }
